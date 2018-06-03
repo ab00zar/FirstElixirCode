@@ -2,6 +2,11 @@
 # and its dependencies with the aid of the Mix.Config module.
 use Mix.Config
 
+config :panda, Panda.Cache,
+  adapter: Nebulex.Adapters.Local,
+  gc_interval: 86_400 # 24 hrs
+
+
 config :panda, token: System.get_env("token")
 
 
