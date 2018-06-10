@@ -25,11 +25,23 @@ defmodule Panda do
         opp2_won_matches = length(Poison.Parser.parse! body)
 
         #Calculate odds based on the number of matches each opponent won before
-        ratio = opp1_won_matches / opp2_won_matches
+        ratio = if (opp1_won_matches == 0 || opp2_won_matches == 0), do: :rand.uniform, else: opp1_won_matches / opp2_won_matches
         opp2_odds = 100 / (ratio + 1)
         opp1_odds = 100 - opp2_odds
 
         %{List.first(r["opponents"])["opponent"]["name"] => opp1_odds, List.last(r["opponents"])["opponent"]["name"] => opp2_odds}
     end
+    
+    def odds_using_cache(match_id) do
+        if Panda.Cache.has_key?(match_id) do
+            IO.puts "It's available in the cache"
+            Panda.Cache.get(match_id)
+        else
+            result = odds_for_match(match_id)
+            IO.inspect result
+            Panda.Cache.set(match_id, result)
+            "The result is stored in the cache for future requests"
+        end
+    end    
   
 end
