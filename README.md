@@ -1,21 +1,7 @@
 # Panda
 
-**TODO: Add description**
-
-## Installation
-
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `panda` to your list of dependencies in `mix.exs`:
-
-```elixir
-def deps do
-  [
-    {:panda, "~> 0.1.0"}
-  ]
-end
-```
-
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/panda](https://hexdocs.pm/panda).
-
+* Token should be passed as an env variable using 'token=YOUR_TOKEN iex -S mix' 
+* Methods:
+   - upcoming_matches returns 5 first upcoming matches
+   - odds_for_match(match_id) calculated odds based on number of matches each opponent won before
+   - odds_using_cache(match_id) returns the odds value using a cache
